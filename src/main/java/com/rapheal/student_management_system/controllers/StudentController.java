@@ -24,7 +24,7 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    //REst api for adding students to the database
+    //Rest api for adding students to the database
     @PostMapping
     public ResponseEntity<?> createStudent(@RequestBody Student student){
         try{
@@ -37,12 +37,14 @@ public class StudentController {
         }
     }
 
+    //Rest api for getting a list of all students from the database
     @GetMapping
     public ResponseEntity<List<Student>> getStudents(){
     List<Student> list = studentService.getALLStudents();
     return ResponseEntity.ok(list);
     }
 
+    //Rest api for finding a student by ID
     @GetMapping("/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable Long id){
     Optional<Student> student = studentService.getStudentById(id);
@@ -52,6 +54,8 @@ public class StudentController {
     return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Couldn't find student with said id" + id);
     }
 
+
+    // Rest api for partially updating student data
 @PatchMapping("/{id}")
     public ResponseEntity<?> updateStudentInfo(@PathVariable Long id, @RequestBody Map<String,Object> updateData){
   try{
@@ -65,6 +69,8 @@ public class StudentController {
 
     }
 
+
+    // Rest api for updating  an existing student's info
     @PutMapping("/{id}")
     public ResponseEntity<?> updateStudentInfo(@PathVariable Long id, @RequestBody Student student){
     Optional<Student> optionalStudent = studentService.getStudentById(id);
@@ -83,6 +89,7 @@ public class StudentController {
     return ResponseEntity.ok(updatedStudent);
     }
 
+    // Rest api for deleting student data
     @DeleteMapping("/{Id}")
     public ResponseEntity<?> deleteStudent(@PathVariable Long Id){
   try{
