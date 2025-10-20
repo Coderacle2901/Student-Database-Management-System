@@ -3,6 +3,7 @@ package com.rapheal.student_management_system.services;
 import com.rapheal.student_management_system.Entities.Student;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 public interface StudentService {
@@ -10,4 +11,5 @@ public interface StudentService {
     List<Student> getALLStudents();
     Optional<Student> getStudentById(Long id);
     void deleteStudentById(Long id);
+    Student updateStudentPartially(Long id, Map<String,Object> updateData);
 }
