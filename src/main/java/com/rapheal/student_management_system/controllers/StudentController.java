@@ -1,8 +1,10 @@
 package com.rapheal.student_management_system.controllers;
 
+import com.rapheal.student_management_system.DTOs.StudentDTO;
 import com.rapheal.student_management_system.Entities.Student;
 import com.rapheal.student_management_system.services.StudentService;
 import com.rapheal.student_management_system.services.StudentServiceImpl;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -26,7 +28,13 @@ public class StudentController {
 
     //Rest api for adding students to the database
     @PostMapping
-    public ResponseEntity<?> createStudent(@RequestBody Student student){
+    public ResponseEntity<?> createStudent( @Valid @RequestBody StudentDTO studentDto){
+        Student student = new Student();
+        student.setAge(studentDto.getAge());
+        student.setFirstName(studentDto.getFirstName());
+        student.setLastName(studentDto.getLastName());
+        student.setEmail(studentDto.getEmail());
+
         try{
             Student savedStudent = studentService.addStudent(student);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedStudent);
@@ -43,6 +51,7 @@ public class StudentController {
     List<Student> list = studentService.getALLStudents();
     return ResponseEntity.ok(list);
     }
+
 
     //Rest api for finding a student by ID
     @GetMapping("/{id}")
@@ -88,6 +97,7 @@ public class StudentController {
     Student updatedStudent = studentService.addStudent(matchingStudent);
     return ResponseEntity.ok(updatedStudent);
     }
+
 
     // Rest api for deleting student data
     @DeleteMapping("/{Id}")
