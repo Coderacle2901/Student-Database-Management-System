@@ -1,4 +1,4 @@
-package com.rapheal.student_management_system.Entities;
+package com.rapheal.student_management_system.entities;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -16,6 +16,7 @@ public class Student {
    private Long id;
     private String firstName;
     private String lastName;
+    @Column(unique = true)
     private String email;
     private int age;
 

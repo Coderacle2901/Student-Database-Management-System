@@ -1,6 +1,6 @@
 package com.rapheal.student_management_system.repositories;
 
-import com.rapheal.student_management_system.Entities.Student;
+import com.rapheal.student_management_system.entities.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

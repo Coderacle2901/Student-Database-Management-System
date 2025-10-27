@@ -1,6 +1,6 @@
 package com.rapheal.student_management_system.services;
 
-import com.rapheal.student_management_system.Entities.Student;
+import com.rapheal.student_management_system.entities.Student;
 import com.rapheal.student_management_system.repositories.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
